@@ -1,198 +1,199 @@
 import {
-  ImageSourcePropType,
-  TextInputProps,
-  ViewStyle,
-  StyleProp,
-  TouchableOpacityProps,
-  TextProps,
+	ImageSourcePropType,
+	TextInputProps,
+	ViewStyle,
+	StyleProp,
+	TouchableOpacityProps,
 } from "react-native";
 
 export interface Schemes {
-  Visa: string;
-  Mastercard: string;
-  "American Express": string;
-  Discover: string;
-  JCB: string;
-  "Diners Club": string;
-  Maestro: string;
-  Mada: string;
+	Visa: string;
+	Mastercard: string;
+	"American Express": string;
+	Discover: string;
+	JCB: string;
+	"Diners Club": string;
+	Maestro: string;
+	Mada: string;
 }
 
 export interface CardNumberState {
-  value: string;
-  icon: any;
-  valid: boolean;
+	value: string;
+	icon: any;
+	valid: boolean;
 }
 
 export type FramesFieldProps = Omit<TextInputProps, "value" | "onChangeText">;
 
 export interface FramesCardFieldProps extends FramesFieldProps {
-  showIcon?: boolean;
+	showIcon?: boolean;
 }
 
 interface Validation {
-  cardNumber: boolean;
-  expiryDate: boolean;
-  cvv: boolean;
-  card: boolean;
+	cardNumber: boolean;
+	expiryDate: boolean;
+	cvv: boolean;
+	card: boolean;
 }
 
 export interface FramesState {
-  cardNumber: string;
-  cardBin: CardBinChangedEvent;
-  cardIcon: ImageSourcePropType;
-  cardType: string;
-  expiryDate: string;
-  cvv: string;
-  cvvLength: number;
-  validation: Validation;
+	cardNumber: string;
+	cardBin: CardBinChangedEvent;
+	cardIcon: ImageSourcePropType;
+	cardType: string;
+	expiryDate: string;
+	cvv: string;
+	cvvLength: number;
+	validation: Validation;
 }
 
 export type FramesDispatch = ({
-  type,
-  payload,
+	type,
+	payload,
 }: {
-  type: string;
-  payload: any;
+	type: string;
+	payload: any;
 }) => void;
 
 export interface FramesBillingAddress {
-  addressLine1?: string;
-  addressLine2?: string;
-  zip?: string;
-  city?: string;
-  state?: string;
-  country?: string;
+	addressLine1?: string;
+	addressLine2?: string;
+	zip?: string;
+	city?: string;
+	state?: string;
+	country?: string;
 }
 
 export interface FramesCardholder {
-  name?: string;
-  billingAddress?: FramesBillingAddress;
-  phone?: string;
+	name?: string;
+	billingAddress?: FramesBillingAddress;
+	phone?: string;
 }
 
 export interface FramesConfig {
-  publicKey: string;
-  debug?: boolean;
-  cardholder?: FramesCardholder;
+	publicKey: string;
+	debug?: boolean;
+	cardholder?: FramesCardholder;
 }
 
 export interface PaymentMethodChangeParams {
-  isValid: boolean;
-  paymentMethod: string;
+	isValid: boolean;
+	paymentMethod: string;
 }
 
 export interface FrameValidationChangedParams {
-  element: string;
-  isValid: boolean;
-  isEmpty: boolean;
+	element: string;
+	isValid: boolean;
+	isEmpty: boolean;
 }
 
 export interface FramesProps extends ViewStyle {
-  style?: StyleProp<ViewStyle>;
-  children: any;
-  config: FramesConfig;
-  frameValidationChanged?: (e: FrameValidationChangedParams) => void;
-  paymentMethodChanged?: (e: PaymentMethodChangeParams) => void;
-  cardValidationChanged?: (e: FrameCardValidationChangedEvent) => void;
-  cardTokenized: (e: FrameCardTokenizedEvent) => void;
-  cardTokenizationFailed?: (e: FrameCardTokenizationFailedEvent) => void;
-  cardBinChanged?: (e: CardBinChangedEvent) => void;
+	style?: StyleProp<ViewStyle>;
+	children: any;
+	config: FramesConfig;
+	frameValidationChanged?: (e: FrameValidationChangedParams) => void;
+	paymentMethodChanged?: (e: PaymentMethodChangeParams) => void;
+	cardValidationChanged?: (e: FrameCardValidationChangedEvent) => void;
+	cardTokenized: (e: FrameCardTokenizedEvent) => void;
+	cardTokenizationFailed?: (e: FrameCardTokenizationFailedEvent) => void;
+	cardBinChanged?: (e: CardBinChangedEvent) => void;
 }
 
 export interface FrameCardValidationChangedEvent {
-  isValid: boolean;
-  isElementValid: ValidationChange;
+	isValid: boolean;
+	isElementValid: ValidationChange;
 }
 
 interface ValidationChange {
-  cardNumber: boolean;
-  expiryDate: boolean;
-  cvv: boolean;
+	cardNumber: boolean;
+	expiryDate: boolean;
+	cvv: boolean;
 }
 
 export type FramesContextType = {
-  state: FramesState;
-  dispatch: FramesDispatch;
-  submitCard: () => void;
+	state: FramesState;
+	dispatch: FramesDispatch;
+	submitCard: () => void;
 };
 
 export interface TokenizationParams {
-  key: string;
-  body: TokenizationBody;
+	key: string;
+	body: TokenizationBody;
 }
 
 export interface TokenizationBody {
-  type: string;
-  number: string;
-  expiry_month: string;
-  expiry_year: string;
-  cvv: string;
-  name?: string;
-  billing_address?: GatewayBillingAddress;
-  phone?: Phone;
+	type: string;
+	number: string;
+	expiry_month: string;
+	expiry_year: string;
+	cvv: string;
+	name?: string;
+	billing_address?: GatewayBillingAddress;
+	phone?: Phone;
 }
 
 export interface Phone {
-  number?: string;
+	number?: string;
 }
 
 export type Scheme =
-  | "Visa"
-  | "Mastercard"
-  | "AMERICAN EXPRESS"
-  | "Diners Club International"
-  | "Maestro"
-  | "Discover"
-  | "Mada";
+	| "Visa"
+	| "Mastercard"
+	| "AMERICAN EXPRESS"
+	| "Diners Club International"
+	| "Maestro"
+	| "Discover"
+	| "Mada";
 
 export type CardType = "Credit" | "Debit" | "Prepaid" | "Charge";
 export type CardCategory = "Consumer" | "Commercial";
 
 export interface GatewayBillingAddress {
-  address_line1?: string;
-  address_line2?: string;
-  city?: string;
-  state?: string;
-  zip?: string;
-  country?: string;
+	address_line1?: string;
+	address_line2?: string;
+	city?: string;
+	state?: string;
+	zip?: string;
+	country?: string;
 }
 
 export interface GatewayPhone {
-  number?: string;
+	number?: string;
 }
 
 export interface FrameCardTokenizedEvent {
-  type: string;
-  token: string;
-  expires_on: string;
-  expiry_month: string;
-  expiry_year: string;
-  scheme?: Scheme;
-  last4: string;
-  bin: string;
-  card_type?: CardType;
-  card_category?: CardCategory;
-  issuer?: string;
-  issuer_country?: string;
-  product_id?: string;
-  product_type?: string;
-  billing_address?: GatewayBillingAddress;
-  phone?: GatewayPhone;
-  name?: GatewayBillingAddress;
+	type: string;
+	token: string;
+	expires_on: string;
+	expiry_month: string;
+	expiry_year: string;
+	scheme?: Scheme;
+	last4: string;
+	bin: string;
+	card_type?: CardType;
+	card_category?: CardCategory;
+	issuer?: string;
+	issuer_country?: string;
+	product_id?: string;
+	product_type?: string;
+	billing_address?: GatewayBillingAddress;
+	phone?: GatewayPhone;
+	name?: GatewayBillingAddress;
 }
 
 export interface FrameCardTokenizationFailedEvent {
-  error_codes: Array<string>;
-  error_type: string;
-  request_id: string;
+	error_codes: Array<string>;
+	error_type: string;
+	request_id: string;
 }
 
 export interface CardBinChangedEvent {
-  bin: string;
-  scheme: string;
+	bin: string;
+	scheme: string;
 }
 
-export interface SubmitButtonProps extends TouchableOpacityProps {
-  textInputProps?: TextInputProps;
-}
+export type SubmitButtonProps = TouchableOpacityProps & {
+	textInputProps?: TextInputProps & {
+		title: string;
+	};
+};
