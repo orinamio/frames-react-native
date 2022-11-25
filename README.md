@@ -78,9 +78,11 @@ export default function App() {
         </View>
 
         <SubmitButton
-          title="Pay Now"
           style={styles.button}
-          textStyle={styles.buttonText}
+          textInputProps={{
+            title: "Pay Now",
+            style: styles.buttonText,
+          }}
           onPress={() => console.log("merchant action")}
         />
       </Frames>

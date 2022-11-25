@@ -11,7 +11,8 @@ const SubmitButton: React.FunctionComponent<SubmitButtonProps> = (props) => {
           throw "It looks like you are trying to render the SubmitButton outside of the Frames Component.";
         }
 
-        const { textStyle: textStyle, title: title, ...touchableProps } = props;
+        const { textInputProps = {}, ...touchableProps } = props;
+        const { title } = textInputProps;
 
         return (
           <TouchableOpacity
@@ -22,7 +23,7 @@ const SubmitButton: React.FunctionComponent<SubmitButtonProps> = (props) => {
               if (props.onPress) props.onPress(e);
             }}
           >
-            <Text style={[styles.buttonText, textStyle]}>{title}</Text>
+            <Text {...textInputProps}  style={[styles.buttonText, textInputProps.style]}>{title}</Text>
           </TouchableOpacity>
         );
       }}
