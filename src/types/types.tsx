@@ -194,6 +194,5 @@ export interface CardBinChangedEvent {
 }
 
 export interface SubmitButtonProps extends TouchableOpacityProps {
-  title: string;
-  textStyle?: TextProps;
+  textInputProps?: TextInputProps;
 }
