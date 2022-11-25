@@ -180,3 +180,7 @@ The tokenization is triggered when the SubmitButton is pressed. The process of g
 | cardTokenized          | function | Triggered after a card is tokenized. Here you will get the card token alongside general card information |
 | cardTokenizationFailed | function | Triggered after the card tokenization fails.                                                             |
 | cardBinChanged         | function | Triggered when the user inputs or changes the first 8 digits of a card.                                  |
+
+
+## Improvements based on Checkout.com React Native SDK
+Checkout.com [React Native SDK]("https://github.com/checkout/frames-react-native")
